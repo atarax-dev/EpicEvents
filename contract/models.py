@@ -1,3 +1,5 @@
+import datetime
+
 from django.conf import settings
 from django.db import models
 
@@ -14,4 +16,4 @@ class Contract(models.Model):
     amount = models.FloatField(blank=True)
 
     def __str__(self):
-        return self.account
+        return f"{self.account} contract {self.id}"
