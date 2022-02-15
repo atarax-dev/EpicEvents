@@ -1,8 +1,10 @@
 from django.http import Http404
 from rest_framework import generics, status
 from rest_framework.generics import get_object_or_404
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
+from EpicEvents.permissions import IsAssigneeOrReadOnlyPermission, IsSalesOrReadOnlyPermission
 from account.serializers import AccountSerializer
 from account.models import Account
 from contract.models import Contract
@@ -14,7 +16,7 @@ from event.serializers import EventSerializer
 class AccountListCreateView(generics.ListCreateAPIView):
     queryset = Account.objects.all()
     serializer_class = AccountSerializer
-    permission_classes = []
+    permission_classes = [IsAuthenticated, IsSalesOrReadOnlyPermission]
 
     def get(self, request, *args, **kwargs):
         queryset = self.get_queryset()
@@ -25,7 +27,7 @@ class AccountListCreateView(generics.ListCreateAPIView):
         serializer = AccountSerializer(data=request.data)
 
         if serializer.is_valid():
-            serializer.save()
+            serializer.save(assignee=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -33,9 +35,13 @@ class AccountListCreateView(generics.ListCreateAPIView):
 class AccountRUDView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Account.objects.all()
     serializer_class = AccountSerializer
-    permission_classes = []
+    permission_classes = [IsAuthenticated, IsAssigneeOrReadOnlyPermission]
 
     def get_object(self):
+        lookup_field = self.kwargs["id"]
+        return get_object_or_404(Account, id=lookup_field)
+
+    def get_account(self):
         lookup_field = self.kwargs["id"]
         return get_object_or_404(Account, id=lookup_field)
 
@@ -43,7 +49,8 @@ class AccountRUDView(generics.RetrieveUpdateDestroyAPIView):
 class ContractListCreateView(generics.ListCreateAPIView):
     queryset = Contract.objects.all()
     serializer_class = ContractSerializer
-    permission_classes = []
+    permission_classes = [IsAuthenticated, IsAssigneeOrReadOnlyPermission]
+    lookup_field = 'id'
 
     def get_account(self):
         lookup_field = self.kwargs["id"]
@@ -67,7 +74,7 @@ class ContractListCreateView(generics.ListCreateAPIView):
 
 class ContractRUDView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ContractSerializer
-    permission_classes = []
+    permission_classes = [IsAuthenticated, IsAssigneeOrReadOnlyPermission]
     queryset = Contract.objects.all()
 
     def get_account(self):
@@ -87,7 +94,15 @@ class ContractRUDView(generics.RetrieveUpdateDestroyAPIView):
 class EventCreateView(generics.ListCreateAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
-    permission_classes = []
+    permission_classes = [IsAuthenticated, IsAssigneeOrReadOnlyPermission]
+
+    def get_account(self):
+        lookup_field = self.kwargs["id"]
+        return get_object_or_404(Account, id=lookup_field)
+
+    def get_object(self):
+        lookup_field = self.kwargs["contract_id"]
+        return get_object_or_404(Contract, id=lookup_field)
 
     def get(self, request, *args, **kwargs):
         lookup_field = self.kwargs["contract_id"]
@@ -110,7 +125,11 @@ class EventCreateView(generics.ListCreateAPIView):
 class EventRUDView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
-    permission_classes = []
+    permission_classes = [IsAuthenticated, IsAssigneeOrReadOnlyPermission]
+
+    def get_account(self):
+        lookup_field = self.kwargs["id"]
+        return get_object_or_404(Account, id=lookup_field)
 
     def get_object(self):
         lookup_field = self.kwargs["contract_id"]
