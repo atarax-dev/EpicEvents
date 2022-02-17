@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'contract',
     'event',
     'phonenumber_field',
+    'django_filters',
 ]
 
 MIDDLEWARE = [

@@ -1,4 +1,5 @@
 from django.http import Http404
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics, status
 from rest_framework.generics import get_object_or_404
 from rest_framework.permissions import IsAuthenticated
@@ -30,6 +31,15 @@ class AccountListCreateView(generics.ListCreateAPIView):
             serializer.save(assignee=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class AccountSearchView(generics.ListAPIView):
+    queryset = Account.objects.all()
+    serializer_class = AccountSerializer
+    permission_classes = [IsAuthenticated]
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['first_name', 'last_name', 'email', 'phoneNumber', 'company', 'status', 'assignee']
+
 
 
 class AccountRUDView(generics.RetrieveUpdateDestroyAPIView):
@@ -79,6 +89,14 @@ class ContractListCreateView(generics.ListCreateAPIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+class ContractSearchView(generics.ListAPIView):
+    queryset = Contract.objects.all()
+    serializer_class = ContractSerializer
+    permission_classes = [IsAuthenticated]
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['account', 'status', 'assignee']
+
+
 class ContractRUDView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ContractSerializer
     permission_classes = [IsAuthenticated, IsAssigneeOrReadOnlyPermission]
@@ -105,10 +123,22 @@ class ContractRUDView(generics.RetrieveUpdateDestroyAPIView):
             if serializer.data['status'] == "Signed":
                 event_serializer = EventSerializer(data={'status': "Coming", 'contract_id': f'{serializer.data["id"]}'})
                 if event_serializer.is_valid():
+                    if Event.objects.all().filter(contract_id=serializer.data['id']).exists():
+                        return Response(data="Vous avez modifié un contrat déjà signé ou"
+                                             " un évenement lié à ce contrat existe déjà",
+                                        status=status.HTTP_400_BAD_REQUEST)
                     event_serializer.create(validated_data={'status': "Coming", 'contract_id': f'{serializer.data["id"]}'})
                 return Response(event_serializer.data)
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class EventSearchView(generics.ListAPIView):
+    queryset = Event.objects.all()
+    serializer_class = EventSerializer
+    permission_classes = [IsAuthenticated]
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = {'contract': ['exact'], 'status': ['exact'], 'assignee': ['exact', 'isnull']}
 
 
 class EventCreateView(generics.ListCreateAPIView):
