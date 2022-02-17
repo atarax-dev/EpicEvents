@@ -68,6 +68,13 @@ class ContractListCreateView(generics.ListCreateAPIView):
 
         if serializer.is_valid():
             serializer.save(account_id=lookup_field)
+            if serializer.data['status'] == "Signed":
+                event_serializer = EventSerializer(data={'status': "Coming", 'contract_id': f'{serializer.data["id"]}'})
+                if event_serializer.is_valid():
+                    event_serializer.create(
+                        validated_data={'status': "Coming", 'contract_id': f'{serializer.data["id"]}'})
+                return Response(event_serializer.data)
+
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -89,6 +96,19 @@ class ContractRUDView(generics.RetrieveUpdateDestroyAPIView):
             return Contract.objects.get(account_id=lookup_field, id=lookup_field2)
         except Contract.DoesNotExist:
             raise Http404
+
+    def put(self, request, *args, **kwargs):
+        snippet = self.get_object()
+        serializer = ContractSerializer(snippet, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            if serializer.data['status'] == "Signed":
+                event_serializer = EventSerializer(data={'status': "Coming", 'contract_id': f'{serializer.data["id"]}'})
+                if event_serializer.is_valid():
+                    event_serializer.create(validated_data={'status': "Coming", 'contract_id': f'{serializer.data["id"]}'})
+                return Response(event_serializer.data)
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class EventCreateView(generics.ListCreateAPIView):
