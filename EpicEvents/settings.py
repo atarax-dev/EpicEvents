@@ -140,6 +140,8 @@ REST_FRAMEWORK = {
     ],
 }
 
+LOGIN_REDIRECT_URL = "/"
+
 sentry_sdk.init(
     dsn="https://a7db8907cb3d415eba18c62bf9fec769@o1147379.ingest.sentry.io/6217547",
     integrations=[DjangoIntegration()],

@@ -1,0 +1,1829 @@
+{
+	"info": {
+		"_postman_id": "d46d11c1-8ffa-41c4-a663-39e1e91f6a2d",
+		"name": "EpicEvents",
+		"description": "Cette documentation est une collection de points de terminaisons pour l'API développée dans le cadre du projet n°12 du parcours développeur d'applications Python d'Open Classrooms.\n\nIl contient les points de terminaisons suivants:\n\n*   Se connecter\n*   Se déconnecter\n*   Obtenir la liste des clients\n*   Créer un nouveau client\n*   Modifier un client\n*   Obtenir les détails d'un client\n*   Supprimer un client\n*   Obtenir la liste des contrats liés à un client\n*   Créer un contrat pour un client\n*   Voir les détails d'un contrat\n*   Modifier un contrat\n*   Supprimer un contrat\n*   Obtenir les détails d'un évènement\n*   Modifier un évènement\n*   Supprimer un évènement\n    \n\nCes points de terminaisons nécessitent les permissions adéquates:  \n\\-Vous devez être authentifié pour accéder à la lecture, création, modification ou suppression d'un contenu\n\n\\-Les utilisateurs au rôle \"Admin\" ont tous les droits\n\n\\-Les utilisateurs au rôle \"Sales\" ne peuvent modifier ou supprimer que les clients et contrats/évènement associé au client dont ils sont responsables  \n\\-Les utilisateurs au rôle \"Support\" ne peuvent modifier ou supprimer que les évènements dont ils sont responsables.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Se connecter",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-CSRFToken",
+						"value": "kBP9LTBs03mufvSMVD5da3zr2WkCHPvGLPMlpZzNaNRnMeW2ZFhLZagzVFeODHwX",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api-auth/login/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api-auth",
+						"login",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Connexion utilisateur",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-CSRFToken",
+								"value": "kBP9LTBs03mufvSMVD5da3zr2WkCHPvGLPMlpZzNaNRnMeW2ZFhLZagzVFeODHwX",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "Atarax",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api-auth/login/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api-auth",
+								"login",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 20 Feb 2022 21:23:38 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.5"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Cookie"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, POST, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "566"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 1,\n        \"first_name\": \"John\",\n        \"last_name\": \"Doe\",\n        \"email\": \"John@gg.com\",\n        \"phoneNumber\": \"+33612345678\",\n        \"secondPhoneNumber\": \"+33612345680\",\n        \"company\": \"Poutrelandco\",\n        \"status\": \"Active\",\n        \"created_time\": \"2022-02-12T00:38:33.026252+01:00\",\n        \"edited_time\": \"2022-02-20T20:39:26.182584+01:00\",\n        \"assignee\": 1\n    },\n    {\n        \"id\": 2,\n        \"first_name\": \"Bobby\",\n        \"last_name\": \"Bel\",\n        \"email\": \"Bobby@gg.com\",\n        \"phoneNumber\": \"+33612346890\",\n        \"secondPhoneNumber\": \"\",\n        \"company\": \"Big Company\",\n        \"status\": \"Active\",\n        \"created_time\": \"2022-02-14T12:51:37.785566+01:00\",\n        \"edited_time\": \"2022-02-20T20:40:30.482235+01:00\",\n        \"assignee\": 2\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Se déconnecter",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api-auth/logout/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api-auth",
+						"logout",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Déconnexion",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api-auth/logout/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api-auth",
+								"logout",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 20 Feb 2022 21:26:32 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.5"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Expires",
+							"value": "Sun, 20 Feb 2022 21:26:32 GMT"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "max-age=0, no-cache, no-store, must-revalidate, private"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1411"
+						},
+						{
+							"key": "Vary",
+							"value": "Cookie"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "sessionid=\"\"; expires=Thu, 01 Jan 1970 00:00:00 GMT; Max-Age=0; Path=/; SameSite=Lax"
+						}
+					],
+					"cookie": [],
+					"body": "<!DOCTYPE html>\n<html lang=\"fr\" dir=\"ltr\">\n    <head>\n        <title>Déconnecté | Site d’administration de Django</title>\n        <link rel=\"stylesheet\" type=\"text/css\" href=\"/static/admin/css/base.css\">\n        <meta name=\"viewport\" content=\"user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0\">\n        <link rel=\"stylesheet\" type=\"text/css\" href=\"/static/admin/css/responsive.css\">\n        <meta name=\"robots\" content=\"NONE,NOARCHIVE\">\n    </head>\n    <body class=\"\"\n  data-admin-utc-offset=\"3600\">\n        <!-- Container -->\n        <div id=\"container\">\n            <!-- Header -->\n            <div id=\"header\">\n                <div id=\"branding\">\n                    <h1 id=\"site-name\">\n                        <a href=\"/admin/\">Administration de Django</a>\n                    </h1>\n                </div>\n            </div>\n            <!-- END Header -->\n            <div class=\"breadcrumbs\">\n                <a href=\"/admin/\">Accueil</a>\n            </div>\n            <div class=\"main\" id=\"main\">\n                <div class=\"content\">\n                    <!-- Content -->\n                    <div id=\"content\" class=\"colM\">\n                        <h1>Déconnecté</h1>\n                        <p>Merci pour le temps que vous avez accordé à ce site aujourd’hui.</p>\n                        <p>\n                            <a href=\"/admin/\">Connectez-vous à nouveau</a>\n                        </p>\n                        <br class=\"clear\">\n        \n                    </div>\n                    <!-- END Content -->\n                    <div id=\"footer\"></div>\n                </div>\n            </div>\n        </div>\n        <!-- END Container -->\n    </body>\n</html>"
+				}
+			]
+		},
+		{
+			"name": "Obtenir la liste des clients",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "Atarax",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/accounts/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"accounts",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Clients",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/accounts/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"accounts",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 20 Feb 2022 19:42:53 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.5"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, POST, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "566"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 1,\n        \"first_name\": \"John\",\n        \"last_name\": \"Doe\",\n        \"email\": \"John@gg.com\",\n        \"phoneNumber\": \"+33612345678\",\n        \"secondPhoneNumber\": \"+33612345680\",\n        \"company\": \"Poutrelandco\",\n        \"status\": \"Active\",\n        \"created_time\": \"2022-02-12T00:38:33.026252+01:00\",\n        \"edited_time\": \"2022-02-20T20:39:26.182584+01:00\",\n        \"assignee\": 1\n    },\n    {\n        \"id\": 2,\n        \"first_name\": \"Bobby\",\n        \"last_name\": \"Bel\",\n        \"email\": \"Bobby@gg.com\",\n        \"phoneNumber\": \"+33612346890\",\n        \"secondPhoneNumber\": \"\",\n        \"company\": \"Big Company\",\n        \"status\": \"Active\",\n        \"created_time\": \"2022-02-14T12:51:37.785566+01:00\",\n        \"edited_time\": \"2022-02-20T20:40:30.482235+01:00\",\n        \"assignee\": 2\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Créer un nouveau client",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "Atarax",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"first_name\": \"Pierrot\",\r\n        \"last_name\": \"Sanchez\",\r\n        \"email\": \"Pierrot@gg.com\",\r\n        \"phoneNumber\": \"+33612351890\",\r\n        \"secondPhoneNumber\": \"\",\r\n        \"company\": \"Small Company\",\r\n        \"status\": \"Active\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/accounts/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"accounts",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Nouveau client",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"first_name\": \"Pierrot\",\r\n        \"last_name\": \"Sanchez\",\r\n        \"email\": \"Pierrot@gg.com\",\r\n        \"phoneNumber\": \"+33612351890\",\r\n        \"secondPhoneNumber\": \"\",\r\n        \"company\": \"Small Company\",\r\n        \"status\": \"Active\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/accounts/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"accounts",
+								""
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 20 Feb 2022 19:47:18 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.5"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, POST, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "286"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 3,\n    \"first_name\": \"Pierrot\",\n    \"last_name\": \"Sanchez\",\n    \"email\": \"Pierrot@gg.com\",\n    \"phoneNumber\": \"+33612351890\",\n    \"secondPhoneNumber\": \"\",\n    \"company\": \"Small Company\",\n    \"status\": \"Active\",\n    \"created_time\": \"2022-02-20T20:47:18.167835+01:00\",\n    \"edited_time\": \"2022-02-20T20:47:18.167835+01:00\",\n    \"assignee\": 1\n}"
+				}
+			]
+		},
+		{
+			"name": "Modifier un client",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "Atarax",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"first_name\": \"Pierrot-modifié\",\r\n    \"last_name\": \"Sanchez\",\r\n    \"email\": \"Pierrot@gg.com\",\r\n    \"phoneNumber\": \"+33612351890\",\r\n    \"company\": \"Smaller Company\",\r\n    \"status\": \"Not Active\",\r\n    \"assignee\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/accounts/3/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"accounts",
+						"3",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Client modifié",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"first_name\": \"Pierrot-modifié\",\r\n    \"last_name\": \"Sanchez\",\r\n    \"email\": \"Pierrot@gg.com\",\r\n    \"phoneNumber\": \"+33612351890\",\r\n    \"company\": \"Smaller Company\",\r\n    \"status\": \"Not Active\",\r\n    \"assignee\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/accounts/3/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"accounts",
+								"3",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 20 Feb 2022 19:55:50 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.5"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "301"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 3,\n    \"first_name\": \"Pierrot-modifié\",\n    \"last_name\": \"Sanchez\",\n    \"email\": \"Pierrot@gg.com\",\n    \"phoneNumber\": \"+33612351890\",\n    \"secondPhoneNumber\": \"\",\n    \"company\": \"Smaller Company\",\n    \"status\": \"Not Active\",\n    \"created_time\": \"2022-02-20T20:47:18.167835+01:00\",\n    \"edited_time\": \"2022-02-20T20:55:50.819432+01:00\",\n    \"assignee\": 2\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtenir les détails d'un client",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "Atarax",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/accounts/3/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"accounts",
+						"3",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Détails d'un client",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/accounts/3/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"accounts",
+								"3",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 20 Feb 2022 19:58:20 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.5"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "301"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 3,\n    \"first_name\": \"Pierrot-modifié\",\n    \"last_name\": \"Sanchez\",\n    \"email\": \"Pierrot@gg.com\",\n    \"phoneNumber\": \"+33612351890\",\n    \"secondPhoneNumber\": \"\",\n    \"company\": \"Smaller Company\",\n    \"status\": \"Not Active\",\n    \"created_time\": \"2022-02-20T20:47:18.167835+01:00\",\n    \"edited_time\": \"2022-02-20T20:55:50.819432+01:00\",\n    \"assignee\": 2\n}"
+				}
+			]
+		},
+		{
+			"name": "Supprimer un client",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "Atarax",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/accounts/3/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"accounts",
+						"3",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Suppression d'un client",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/accounts/3/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"accounts",
+								"3",
+								""
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 20 Feb 2022 20:00:42 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.5"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Obtenir la liste des contrats liés à un compte",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "Atarax",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/accounts/1/contracts/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"accounts",
+						"1",
+						"contracts",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Liste des contrats liés à un compte",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/accounts/1/contracts/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"accounts",
+								"1",
+								"contracts",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 20 Feb 2022 20:03:43 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.5"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, POST, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "979"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 7,\n        \"status\": \"Signed\",\n        \"amount\": 1234,\n        \"account\": 1,\n        \"created_time\": \"2022-02-13T20:13:18.336342+01:00\",\n        \"edited_time\": \"2022-02-14T11:21:51.188704+01:00\",\n        \"assignee\": 1,\n        \"signature_time\": \"2022-02-14T11:21:00+01:00\"\n    },\n    {\n        \"id\": 1,\n        \"status\": \"Signed\",\n        \"amount\": 4467900.565,\n        \"account\": 1,\n        \"created_time\": \"2022-02-12T01:03:35.972659+01:00\",\n        \"edited_time\": \"2022-02-17T14:24:55.892718+01:00\",\n        \"assignee\": 1,\n        \"signature_time\": null\n    },\n    {\n        \"id\": 11,\n        \"status\": \"Signed\",\n        \"amount\": 7500,\n        \"account\": 1,\n        \"created_time\": \"2022-02-17T14:27:27.530785+01:00\",\n        \"edited_time\": \"2022-02-17T14:27:27.530785+01:00\",\n        \"assignee\": 3,\n        \"signature_time\": null\n    },\n    {\n        \"id\": 12,\n        \"status\": \"Signed\",\n        \"amount\": 7500,\n        \"account\": 1,\n        \"created_time\": \"2022-02-17T14:29:09.130349+01:00\",\n        \"edited_time\": \"2022-02-17T15:12:39.463138+01:00\",\n        \"assignee\": 3,\n        \"signature_time\": null\n    },\n    {\n        \"id\": 8,\n        \"status\": \"Signed\",\n        \"amount\": 3456789,\n        \"account\": 1,\n        \"created_time\": \"2022-02-13T20:14:08.761038+01:00\",\n        \"edited_time\": \"2022-02-13T20:14:08.761038+01:00\",\n        \"assignee\": 1,\n        \"signature_time\": null\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Créer un contrat pour un client ",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "Atarax",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"status\": \"Not Signed\",\r\n    \"account\": \"1\" ,\r\n    \"assignee\": \"2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/accounts/1/contracts/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"accounts",
+						"1",
+						"contracts",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Contrat créé",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": \"Not Signed\",\r\n    \"account\": \"1\" ,\r\n    \"assignee\": \"2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/accounts/1/contracts/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"accounts",
+								"1",
+								"contracts",
+								""
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 20 Feb 2022 20:10:51 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.5"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, POST, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "191"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 15,\n    \"status\": \"Not Signed\",\n    \"amount\": null,\n    \"account\": 1,\n    \"created_time\": \"2022-02-20T21:10:51.045983+01:00\",\n    \"edited_time\": \"2022-02-20T21:10:51.045983+01:00\",\n    \"assignee\": 2,\n    \"signature_time\": null\n}"
+				}
+			]
+		},
+		{
+			"name": "Voir les détails d'un contrat",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "Atarax",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/accounts/1/contracts/15/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"accounts",
+						"1",
+						"contracts",
+						"15",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Détails d'un contrat",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/accounts/1/contracts/15/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"accounts",
+								"1",
+								"contracts",
+								"15",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 20 Feb 2022 20:16:23 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.5"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "191"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 15,\n    \"status\": \"Not Signed\",\n    \"amount\": null,\n    \"account\": 1,\n    \"created_time\": \"2022-02-20T21:10:51.045983+01:00\",\n    \"edited_time\": \"2022-02-20T21:10:51.045983+01:00\",\n    \"assignee\": 2,\n    \"signature_time\": null\n}"
+				}
+			]
+		},
+		{
+			"name": "Modifier un contrat",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "Atarax",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"status\": \"Not Signed\",\r\n    \"account\": \"1\",\r\n    \"assignee\": \"1\",\r\n    \"amount\": \"10000\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/accounts/1/contracts/15/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"accounts",
+						"1",
+						"contracts",
+						"15",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Contrat modifié",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": \"Not Signed\",\r\n    \"account\": \"1\",\r\n    \"assignee\": \"1\",\r\n    \"amount\": \"10000\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/accounts/1/contracts/15/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"accounts",
+								"1",
+								"contracts",
+								"15",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 20 Feb 2022 20:19:42 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.5"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "194"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 15,\n    \"status\": \"Not Signed\",\n    \"amount\": 10000,\n    \"account\": 1,\n    \"created_time\": \"2022-02-20T21:10:51.045983+01:00\",\n    \"edited_time\": \"2022-02-20T21:19:42.973375+01:00\",\n    \"assignee\": 1,\n    \"signature_time\": null\n}"
+				}
+			]
+		},
+		{
+			"name": "Supprimer un contrat",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "Atarax",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/accounts/1/contracts/15/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"accounts",
+						"1",
+						"contracts",
+						"15",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Contrat supprimé",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/accounts/1/contracts/15/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"accounts",
+								"1",
+								"contracts",
+								"15",
+								""
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 20 Feb 2022 20:21:15 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.5"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Obtenir les détails d'un événement lié à un contrat signé",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "Atarax",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/accounts/1/contracts/7/event/edit/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"accounts",
+						"1",
+						"contracts",
+						"7",
+						"event",
+						"edit",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Détails d'un événement lié à un contrat",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/accounts/1/contracts/7/event/edit/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"accounts",
+								"1",
+								"contracts",
+								"7",
+								"event",
+								"edit",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 20 Feb 2022 20:35:01 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.5"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "113"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"status\": \"Coming\",\n    \"contract\": 7,\n    \"notes\": \"\",\n    \"assignee\": 1,\n    \"attendees\": 25,\n    \"date\": \"2025-02-14T11:52:00+01:00\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Modifier un évenement",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "Atarax",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"status\": \"Ended\",\r\n    \"notes\": \"Modified!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/accounts/1/contracts/7/event/edit/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"accounts",
+						"1",
+						"contracts",
+						"7",
+						"event",
+						"edit",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Evenement modifié",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": \"Ended\",\r\n    \"notes\": \"Modified!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/accounts/1/contracts/7/event/edit/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"accounts",
+								"1",
+								"contracts",
+								"7",
+								"event",
+								"edit",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 20 Feb 2022 20:37:41 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.5"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "121"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"status\": \"Ended\",\n    \"contract\": 7,\n    \"notes\": \"Modified!\",\n    \"assignee\": 1,\n    \"attendees\": 25,\n    \"date\": \"2025-02-14T11:52:00+01:00\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Supprimer un évenement",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "Atarax",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/accounts/1/contracts/7/event/edit/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"accounts",
+						"1",
+						"contracts",
+						"7",
+						"event",
+						"edit",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Evenement supprimé",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/accounts/1/contracts/7/event/edit/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"accounts",
+								"1",
+								"contracts",
+								"7",
+								"event",
+								"edit",
+								""
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 20 Feb 2022 20:38:34 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.5"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, PUT, PATCH, DELETE, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": null
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "admin",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "Atarax",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
